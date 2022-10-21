@@ -1,0 +1,7 @@
+.contact-summary {
+    transition: 800ms;
+}
+
+.contact-summary:hover{
+    opacity: 0.6;
+}

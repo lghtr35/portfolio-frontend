@@ -1,0 +1,50 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    /*
+    flex-wrap: wrap;
+    justify-items: center;
+    align-items: flex-start; */
+    width: 100%;
+    height: 110%;
+}
+
+.first-row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.second-row {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+}
+
+.me-img-container {
+    border: 2px outset rgba(0, 0, 0, 0.75);
+    margin: 1%;
+    flex: 1;
+    align-self: flex-start;
+}
+
+.img-info-box {
+    display: flex;
+}
+
+.about-container {
+    flex: 5;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.cv-container {
+    flex: 1;
+}
+
+.cv {
+    width: 90%;
+    height: 900px;
+    margin-top: 3%;
+    margin-bottom: -2%;
+}
