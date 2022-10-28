@@ -4,9 +4,14 @@ export const AdjustableSection = (props) => {
   return (
     <Box
       sx={{
-        backgroundColor: colors.background,
-        width: props.maxWidth ? props.maxWidth : "100%",
-        height: props.maxHeight ? props.maxHeight : 350,
+        backgroundColor: props.backgroundColor
+          ? props.backgroundColor
+          : colors.background,
+        minWidth: props.minWidth ? props.minWidth : "100%",
+        minHeight: props.minHeight ? props.minHeight : 400,
+        maxWidth: props.maxWidth ? props.maxWidth : false,
+        maxHeight: props.maxHeight ? props.maxHeight : false,
+        ...props?.style,
       }}
     >
       {props.children}

@@ -34,23 +34,29 @@ export const ContactForm = (props) => {
     });
   };
   return (
-    <Box sx={{ width: "33%" }}>
+    <Box
+      style={{
+        width: "100%",
+        backgroundColor: colors.background,
+      }}
+    >
       <Accordion
-        sx={{ backgroundColor: "inherit", width: "45%" }}
+        sx={{
+          width: "18%",
+          height: "100%",
+          color: colors.textWhite,
+          backgroundColor: "transparent",
+        }}
         onClick={() => {
-          const lastEl = document.getElementById("bottom-element");
-          lastEl.scrollIntoView({ behavior: "smooth" });
+          window.scrollTo(0, document.body.scrollHeight);
         }}
       >
         <AccordionSummary
           expandIcon={
-            <ExpandMoreIcon sx={{ color: colors.text, fontWeight: 700 }} />
+            <ExpandMoreIcon sx={{ ontWeight: 700, color: colors.textWhite }} />
           }
         >
-          <Typography
-            sx={{ color: colors.text, fontWeight: 700 }}
-            className="contact-summary"
-          >
+          <Typography sx={{ fontWeight: 700 }} className="contact-summary">
             Contact Me
           </Typography>
         </AccordionSummary>

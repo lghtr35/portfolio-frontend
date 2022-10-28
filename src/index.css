@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html {
+  background-color: #FF731D/*#38405F*/;
+}
+
+.hoverable-text{
+  opacity: 1;
+}
+
+.hoverable-text:hover {
+  opacity: 0.7;
+}

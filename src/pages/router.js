@@ -13,8 +13,7 @@ export default function App() {
     <Router>
       <Box
         style={{
-          color: colors.text,
-          backgroundColor: colors.background,
+          color: colors.textWhite,
         }}
       >
         <NavBar />
