@@ -29,7 +29,10 @@ export const NavBar = (props) => {
       >
         <Toolbar direction="row" sx={{ justifyContent: "space-around" }}>
           <div style={{ width: "100%" }}>
-            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link
+              to="/"
+              style={{ textDecoration: "none", color: colors.textDark }}
+            >
               <Typography
                 fontSize={27}
                 fontWeight={1000}
@@ -46,8 +49,7 @@ export const NavBar = (props) => {
                 width: "10%",
                 textAlign: "center",
                 fontFamily: "Quicksand",
-                fontWeight: 800,
-                color: "inherit",
+                color: colors.textDark,
                 textDecoration: "none",
               }}
               key={page.name}

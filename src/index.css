@@ -13,10 +13,12 @@ code {
 }
 
 html {
-  background-color: #FF731D/*#38405F*/;
+  background-color: #f1fafc/*#38405F*/;
 }
 
 .hoverable-text{
+  transition: 400ms ease-in-out;
+  color:inherit;
   opacity: 1;
 }
 

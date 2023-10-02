@@ -44,7 +44,7 @@ export const ContactForm = (props) => {
         sx={{
           width: "18%",
           height: "100%",
-          color: colors.textWhite,
+          color: colors.textDark,
           backgroundColor: "transparent",
         }}
         onClick={() => {
@@ -53,7 +53,7 @@ export const ContactForm = (props) => {
       >
         <AccordionSummary
           expandIcon={
-            <ExpandMoreIcon sx={{ ontWeight: 700, color: colors.textWhite }} />
+            <ExpandMoreIcon sx={{ ontWeight: 700, color: colors.textDark }} />
           }
         >
           <Typography sx={{ fontWeight: 700 }} className="contact-summary">

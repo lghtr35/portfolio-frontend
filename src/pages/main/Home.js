@@ -1,7 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { AdjustableSection } from "../../components/adjustable.section";
-import { CircuitBoard } from "../../components/circuit.board.svg";
 import { ShortInfo } from "../../components/short.info";
 import { colors } from "../../helpers/conf";
 import "./Home.css";
@@ -10,30 +9,29 @@ export const Home = () => {
   const greeting = "Hello!9 I am Serdıl Çağın.".split("");
   const [showedCharCount, setShowedCharCount] = useState(0);
   const [isIncreasing, setIsIncreasing] = useState(true);
-  const [currentScroll, setCurrentScroll] = useState(0);
-  const getCurrentScroll = (e) => {
-    setCurrentScroll(document.scrollingElement.scrollTop);
-  };
-  const findScrollPercentage = (elem) => {
-    if (!elem) return 0;
-    const position = elem.getBoundingClientRect().top;
-    const percentage = currentScroll / (position <= 0 ? 1 : position);
-    return percentage;
-  };
+  // const [currentScroll, setCurrentScroll] = useState(0);
+  // const getCurrentScroll = (e) => {
+  //   setCurrentScroll(document.scrollingElement.scrollTop);
+  // };
+  // const findScrollPercentage = (elem) => {
+  //   if (!elem) return 0;
+  //   const position = elem.getBoundingClientRect().top;
+  //   const percentage = currentScroll / (position <= 0 ? 1 : position);
+  //   return percentage;
+  // };
   useEffect(() => {
     setTimeout(() => {
       if (isIncreasing) {
         setShowedCharCount(showedCharCount + 1);
       }
     }, 32);
-    window.addEventListener("scroll", getCurrentScroll);
+    // window.addEventListener("scroll", getCurrentScroll);
     if (showedCharCount === greeting.length && isIncreasing) {
       setIsIncreasing(!isIncreasing);
     }
   }, [showedCharCount, isIncreasing]);
   return (
     <Stack>
-      <CircuitBoard />
       <AdjustableSection minHeight="56vh" minWidth="100%">
         <Typography
           fontWeight={700}
@@ -51,7 +49,6 @@ export const Home = () => {
         </Typography>
       </AdjustableSection>
       <AdjustableSection
-        minHeight="70vh"
         backgroundColor={colors.backgroundLight}
         style={{
           position: "relative",
@@ -59,7 +56,7 @@ export const Home = () => {
           boxShadow: "0px -3px 30px 0px rgba(0,0,0,0.5)",
         }}
       >
-        <ShortInfo findScrollPercentage={findScrollPercentage} />
+        <ShortInfo />
       </AdjustableSection>
     </Stack>
   );

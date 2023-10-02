@@ -5,3 +5,7 @@ export const getWindowDimensions = () => {
     height,
   };
 };
+
+export const getImageUrl = (bytes, extension) => {
+  return `data:image/${extension.toLowerCase()};base64,${bytes}`;
+};

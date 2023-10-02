@@ -6,10 +6,10 @@ export const SPOTIFY_ICON_URL = process.env.REACT_APP_SPOTIFY_ICON_URL;
 export const TWITTER_ICON_URL = process.env.REACT_APP_TWITTER_ICON_URL;
 
 export const colors = {
-  background: "#FF731D",
-  primary: "#377D71",
-  secondary: "#DC5F00",
+  background: "#c9e4eb",
+  primary: "#f1fafc",
+  secondary: "#3db5c4",
   textWhite: "#FFFFFF",
-  text: "#FF0035",
-  textDark: "#000000",
+  text: "#004a94",
+  textDark: "#004a94",
 };
