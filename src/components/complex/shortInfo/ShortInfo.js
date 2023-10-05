@@ -1,9 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { CustomCarousel } from "./carousel";
 import { Link } from "react-router-dom";
-import { colors, SERVER_URL } from "../helpers/conf";
+import { colors, SERVER_URL } from "../../../helpers/conf";
 import { useEffect, useState } from "react";
-import { getRequest } from "../helpers/request";
+import { getRequest } from "../../../helpers/request";
 
 export const ShortInfo = (props) => {
   const [latestProjects, setLatestProjects] = useState([]);
@@ -39,12 +38,14 @@ export const ShortInfo = (props) => {
     color: "inherit",
     fontWeight: "bold",
     fontSize: "3vw",
+    color: colors.textWhite,
   };
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         paddingInline: "4%",
         paddingBlock: "3%",
+        color: colors.textDark,
       }}
     >
       <Typography id="about-text" fontFamily="Quicksand" fontSize="3vh">
@@ -81,27 +82,19 @@ export const ShortInfo = (props) => {
           <Link className="hoverable-text" to="/projects" style={linkStyle}>
             Projects
           </Link>
-          <div style={{ width: "90%", marginInline: "auto", marginTop: "4%" }}>
-            <CustomCarousel
-              fade={true}
-              boxHeight="52vh"
-              images={latestProjects}
-            />
-          </div>
+          <div
+            style={{ width: "90%", marginInline: "auto", marginTop: "4%" }}
+          ></div>
         </div>
         <div id="short-info-interest-box" style={boxStyle}>
           <Link className="hoverable-text" to="/about" style={linkStyle}>
             Experiences and Skills
           </Link>
-          <div style={{ width: "90%", marginInline: "auto", marginTop: "4%" }}>
-            <CustomCarousel
-              fade={true}
-              boxHeight="52vh"
-              images={importantAbouts}
-            />
-          </div>
+          <div
+            style={{ width: "90%", marginInline: "auto", marginTop: "4%" }}
+          ></div>
         </div>
       </div>
-    </Box>
+    </div>
   );
 };

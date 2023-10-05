@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./main/Home";
 import { Projects } from "./projects/Projects";
 import { About } from "./about/About";
 import { Admin } from "./admin/Admin";
 import { colors } from "../helpers/conf";
-import { Footer, NavBar } from "../components/static.components";
+import { Footer, Navbar } from "../components/static.components";
 import { Box } from "@mui/material";
 
 export default function App() {
   return (
-    <Router>
-      <Box
-        style={{
-          color: colors.textDark,
-        }}
-      >
-        <NavBar />
+    <div
+      id="app"
+      style={{
+        color: colors.text,
+        backgroundColor: colors.background,
+      }}
+    >
+      <Router>
+        <Navbar />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -32,7 +34,7 @@ export default function App() {
           </Route>
         </Switch>
         <Footer />
-      </Box>
-    </Router>
+      </Router>
+    </div>
   );
 }

@@ -8,12 +8,12 @@ import {
   Toolbar,
   Stack,
 } from "@mui/material";
-import { colors } from "../helpers/conf";
+import { colors } from "../../../helpers/conf";
 import "@fontsource/quicksand";
-import "./navbar.css";
+import "./Navbar.css";
 import { Link } from "react-router-dom";
 
-export const NavBar = (props) => {
+export const Navbar = (props) => {
   const pages = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/projects" },
@@ -23,23 +23,22 @@ export const NavBar = (props) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         sx={{
-          backgroundColor: colors.background,
+          backgroundColor: colors.primary,
         }}
         elevation={12}
       >
         <Toolbar direction="row" sx={{ justifyContent: "space-around" }}>
-          <div style={{ width: "100%" }}>
-            <Link
-              to="/"
-              style={{ textDecoration: "none", color: colors.textDark }}
-            >
-              <Typography
-                fontSize={27}
-                fontWeight={1000}
-                fontFamily="Quicksand"
+          <div style={{ width: "70%" }}>
+            <Link to="/" style={{ textDecoration: "none", color: colors.text }}>
+              <span
+                style={{
+                  fontFamily: "Quicksand",
+                  fontWeight: "bold",
+                  fontSize: "180%",
+                }}
               >
                 SCC
-              </Typography>
+              </span>
             </Link>
           </div>
           {pages.map((page) => (
@@ -49,7 +48,7 @@ export const NavBar = (props) => {
                 width: "10%",
                 textAlign: "center",
                 fontFamily: "Quicksand",
-                color: colors.textDark,
+                color: colors.text,
                 textDecoration: "none",
               }}
               key={page.name}

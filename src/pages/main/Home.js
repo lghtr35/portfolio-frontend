@@ -1,9 +1,12 @@
 import { Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { AdjustableSection } from "../../components/adjustable.section";
-import { ShortInfo } from "../../components/short.info";
 import { colors } from "../../helpers/conf";
 import "./Home.css";
+import {
+  AdjustableRow,
+  ShortInfo,
+  Page,
+} from "../../components/static.components";
 
 export const Home = () => {
   const greeting = "Hello!9 I am Serdıl Çağın.".split("");
@@ -31,8 +34,8 @@ export const Home = () => {
     }
   }, [showedCharCount, isIncreasing]);
   return (
-    <Stack>
-      <AdjustableSection minHeight="56vh" minWidth="100%">
+    <Page>
+      <AdjustableRow minHeight="56vh" minWidth="100%">
         <Typography
           fontWeight={700}
           fontSize="8vw"
@@ -47,8 +50,8 @@ export const Home = () => {
             return elem;
           })}
         </Typography>
-      </AdjustableSection>
-      <AdjustableSection
+      </AdjustableRow>
+      <AdjustableRow
         backgroundColor={colors.backgroundLight}
         style={{
           position: "relative",
@@ -57,7 +60,7 @@ export const Home = () => {
         }}
       >
         <ShortInfo />
-      </AdjustableSection>
-    </Stack>
+      </AdjustableRow>
+    </Page>
   );
 };

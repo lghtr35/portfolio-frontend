@@ -1,21 +1,31 @@
-import { AppBar, Toolbar } from "@mui/material";
-import { colors } from "../helpers/conf";
-import { ContactForm } from "./contact.form";
+import { div, Toolbar } from "@mui/material";
+import { colors } from "../../../helpers/conf";
+import { ContactForm } from "../contactForm/ContactForm";
 
 export const Footer = () => {
-  const buttonStyle = { marginLeft: "4%", width: "7%", marginRight: "-1%" };
+  const buttonStyle = { marginLeft: "10%", width: "100%", padding: "1% 2%" };
   return (
-    <AppBar
-      sx={{
+    <div
+      style={{
+        width: "100%",
         top: "auto",
         bottom: 0,
         position: "relative",
-        backgroundColor: colors.background,
+        backgroundColor: colors.primary,
+        display: "flex",
+        flexDirection: "row",
+        zIndex: 2,
       }}
-      elevation={2}
     >
-      <Toolbar>
-        <ContactForm />
+      <ContactForm style={{ width: "85%" }} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          width: "20%",
+        }}
+      >
         <div style={buttonStyle}>
           <a
             className="hoverable-text"
@@ -23,7 +33,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              color: colors.textDark,
+              color: colors.text,
               textDecoration: "none",
               fontWeight: "bolder",
             }}
@@ -31,11 +41,12 @@ export const Footer = () => {
             LinkedIn
           </a>
         </div>
+
         <div style={buttonStyle}>
           <a
             className="hoverable-text"
             style={{
-              color: colors.textDark,
+              color: colors.text,
               textDecoration: "none",
               fontWeight: "bolder",
             }}
@@ -46,14 +57,7 @@ export const Footer = () => {
             Github
           </a>
         </div>
-      </Toolbar>
-      <div
-        style={{
-          float: "left",
-          bottom: 0,
-        }}
-        id="bottom-element"
-      ></div>
-    </AppBar>
+      </div>
+    </div>
   );
 };

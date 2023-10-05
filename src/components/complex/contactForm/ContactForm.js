@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { colors } from "../helpers/conf";
-import { postRequest } from "../helpers/request";
-import "./contact.form.css";
+import { colors } from "../../../helpers/conf";
+import { postRequest } from "../../../helpers/request";
+import "./ContactForm.css";
 
 export const ContactForm = (props) => {
   const [header, setHeader] = useState("");
@@ -34,26 +34,25 @@ export const ContactForm = (props) => {
     });
   };
   return (
-    <Box
-      style={{
-        width: "100%",
-        backgroundColor: colors.background,
-      }}
-    >
+    <div style={props.style}>
       <Accordion
         sx={{
           width: "18%",
           height: "100%",
-          color: colors.textDark,
+          color: colors.text,
           backgroundColor: "transparent",
         }}
-        onClick={() => {
-          window.scrollTo(0, document.body.scrollHeight);
+        onClick={async () => {
+          await new Promise((r) => setTimeout(r, 300));
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          });
         }}
       >
         <AccordionSummary
           expandIcon={
-            <ExpandMoreIcon sx={{ ontWeight: 700, color: colors.textDark }} />
+            <ExpandMoreIcon sx={{ ontWeight: 700, color: colors.text }} />
           }
         >
           <Typography sx={{ fontWeight: 700 }} className="contact-summary">
@@ -109,7 +108,7 @@ export const ContactForm = (props) => {
             <Button
               style={{
                 width: "100%",
-                backgroundColor: colors.secondary,
+                backgroundColor: colors.text,
                 borderColor: colors.primary,
               }}
               variant="success"
@@ -120,6 +119,6 @@ export const ContactForm = (props) => {
           </Form>
         </AccordionDetails>
       </Accordion>
-    </Box>
+    </div>
   );
 };

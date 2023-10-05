@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { SPOTIFY_ACCOUNT_URL, SPOTIFY_API_URL } from "../helpers/conf";
-import { getRequest, postRequest, putRequest } from "../helpers/request";
-import "./spotify.player.css";
+import { SPOTIFY_ACCOUNT_URL, SPOTIFY_API_URL } from "../../../helpers/conf";
+import { getRequest, postRequest, putRequest } from "../../../helpers/request";
+import "./SpotifyPlayer.css";
 
 const mediaControl = (control, token, start) => {
   console.log(token);
