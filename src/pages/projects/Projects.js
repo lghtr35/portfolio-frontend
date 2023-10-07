@@ -21,7 +21,7 @@ export const Projects = () => {
     setContent(content);
     setModalOpen(true);
   };
-  const elementsPerRow = 3;
+  const elementsPerRow = 4;
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(elementsPerRow * 2);
   const [totalRecords, setTotalRecords] = useState(0);

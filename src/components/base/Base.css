@@ -1,0 +1,95 @@
+.circuit-board {
+    animation-name: breathe-in;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    right: 0;
+    top: 0;
+}
+
+@keyframes breathe-in {
+    0% {
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 5%, rgba(0,0,0,1) 100%);
+    }
+    5%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 6%, rgba(0,0,0,1) 100%);
+    }
+    10%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 7%, rgba(0,0,0,1) 100%);
+    }
+    15%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 8%, rgba(0,0,0,1) 100%);
+    }
+    20%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 9%, rgba(0,0,0,1) 100%);
+    }
+    25%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 100%);
+    }
+    30%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 11%, rgba(0,0,0,1) 100%);
+    }
+    35%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 12%, rgba(0,0,0,1) 100%);
+    }
+    40%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 13%, rgba(0,0,0,1) 100%);
+    }
+    45%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 14%, rgba(0,0,0,1) 100%);
+    }
+    50%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 15%, rgba(0,0,0,1) 100%);
+    }
+    55%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 16%, rgba(0,0,0,1) 100%);
+    }
+    60%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 17%, rgba(0,0,0,1) 100%);
+    }
+    65%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 18%, rgba(0,0,0,1) 100%);
+    }
+    70%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 19%, rgba(0,0,0,1) 100%);
+    }
+    75%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 100%);
+    }
+    80%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 21%, rgba(0,0,0,1) 100%);
+    }
+    85%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 22%, rgba(0,0,0,1) 100%);
+    }
+    90%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 23%, rgba(0,0,0,1) 100%);
+    }
+    95%{
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 24%, rgba(0,0,0,1) 100%);
+    }
+    100% {
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0.9) 100%);
+    }
+}
+
+.st0 {
+    display:none;
+}
+
+.st1 {
+    display:inline;
+    fill:#202244;
+}
+
+.st2 {
+    fill:none;
+    stroke-width:16;
+    stroke-miterlimit:10;
+}
+
+.st3 {
+    enable-background:new 0 0 678.13 306.32;
+}

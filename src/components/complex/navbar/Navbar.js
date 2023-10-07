@@ -12,6 +12,7 @@ import { colors } from "../../../helpers/conf";
 import "@fontsource/quicksand";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { Logo } from "../../static.components";
 
 export const Navbar = (props) => {
   const pages = [
@@ -30,15 +31,7 @@ export const Navbar = (props) => {
         <Toolbar direction="row" sx={{ justifyContent: "space-around" }}>
           <div style={{ width: "70%" }}>
             <Link to="/" style={{ textDecoration: "none", color: colors.text }}>
-              <span
-                style={{
-                  fontFamily: "Quicksand",
-                  fontWeight: "bold",
-                  fontSize: "180%",
-                }}
-              >
-                SCC
-              </span>
+              <Logo />
             </Link>
           </div>
           {pages.map((page) => (
@@ -47,14 +40,16 @@ export const Navbar = (props) => {
               style={{
                 width: "10%",
                 textAlign: "center",
-                fontFamily: "Quicksand",
+
                 color: colors.text,
                 textDecoration: "none",
               }}
               key={page.name}
               to={page.path}
             >
-              {page.name}
+              <span style={{ fontFamily: "Quicksand", fontSize: 20 }}>
+                {page.name}
+              </span>
             </Link>
           ))}
         </Toolbar>

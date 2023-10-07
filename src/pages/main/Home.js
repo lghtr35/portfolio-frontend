@@ -6,6 +6,7 @@ import {
   AdjustableRow,
   ShortInfo,
   Page,
+  CircuitBoard,
 } from "../../components/static.components";
 
 export const Home = () => {
@@ -36,6 +37,7 @@ export const Home = () => {
   return (
     <Page>
       <AdjustableRow minHeight="56vh" minWidth="100%">
+        <CircuitBoard />
         <Typography
           fontWeight={700}
           fontSize="8vw"

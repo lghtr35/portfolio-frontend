@@ -1,3 +1,5 @@
+import { formControlClasses } from "@mui/material";
+
 export { Footer } from "./complex/footer/Footer";
 export { ShortInfo } from "./complex/shortInfo/ShortInfo";
 export { Navbar } from "./complex/navbar/Navbar";
@@ -16,3 +18,5 @@ export { Page } from "./base/Page";
 export { Modal } from "./base/Modal";
 export { Pagination } from "./base/Pagination";
 export { DocumentViewer } from "./base/DocumentViewer";
+export { CircuitBoard } from "./base/CircuitBoard";
+export { Logo } from "./base/Logo";

@@ -3,7 +3,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Box,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
