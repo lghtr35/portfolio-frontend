@@ -36,8 +36,6 @@ export const ContactForm = (props) => {
     <div style={props.style}>
       <Accordion
         sx={{
-          width: "18%",
-          height: "100%",
           color: colors.text,
           backgroundColor: "transparent",
         }}

@@ -1,29 +1,34 @@
 import { div, Toolbar } from "@mui/material";
 import { colors } from "../../../helpers/conf";
 import { ContactForm } from "../contactForm/ContactForm";
+import { isMobileDevice } from "../../../helpers/functions";
+import { useEffect, useState } from "react";
 
 export const Footer = () => {
   const buttonStyle = { marginLeft: "10%", width: "100%", padding: "1% 2%" };
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(isMobileDevice());
+  });
   return (
     <div
       style={{
         width: "100%",
-        top: "auto",
-        bottom: 0,
-        position: "relative",
         backgroundColor: colors.primary,
         display: "flex",
         flexDirection: "row",
         zIndex: 2,
       }}
     >
-      <ContactForm style={{ width: "85%" }} />
+      <ContactForm style={{ width: isMobile ? "150px" : "20%" }} />
+      <div style={{ width: isMobile ? "60px" : "60%" }} />
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          width: "20%",
+          width: isMobile ? "80px" : "20%",
         }}
       >
         <div style={buttonStyle}>

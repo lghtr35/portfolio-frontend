@@ -13,8 +13,15 @@ import "@fontsource/quicksand";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { Logo } from "../../static.components";
+import { useEffect, useState } from "react";
+import { isMobileDevice } from "../../../helpers/functions";
 
 export const Navbar = (props) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(isMobileDevice());
+  });
   const pages = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/projects" },
@@ -29,7 +36,7 @@ export const Navbar = (props) => {
         elevation={12}
       >
         <Toolbar direction="row" sx={{ justifyContent: "space-around" }}>
-          <div style={{ width: "70%" }}>
+          <div style={{ width: isMobile ? "66px" : "70%" }}>
             <Link to="/" style={{ textDecoration: "none", color: colors.text }}>
               <Logo />
             </Link>
@@ -38,7 +45,7 @@ export const Navbar = (props) => {
             <Link
               className="navbar-button"
               style={{
-                width: "10%",
+                width: isMobile ? "25px" : "10%",
                 textAlign: "center",
 
                 color: colors.text,
@@ -47,7 +54,12 @@ export const Navbar = (props) => {
               key={page.name}
               to={page.path}
             >
-              <span style={{ fontFamily: "Quicksand", fontSize: 20 }}>
+              <span
+                style={{
+                  fontFamily: "Quicksand",
+                  fontSize: isMobile ? 12 : 20,
+                }}
+              >
                 {page.name}
               </span>
             </Link>

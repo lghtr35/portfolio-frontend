@@ -7,22 +7,17 @@ import {
   ShortInfo,
   Page,
   CircuitBoard,
+  DownloadButton,
 } from "../../components/static.components";
+import { getRequest } from "../../helpers/request";
+import { getFileUrl } from "../../helpers/functions";
 
 export const Home = () => {
   const greeting = "Hello!9 I am Serdıl Çağın.".split("");
   const [showedCharCount, setShowedCharCount] = useState(0);
   const [isIncreasing, setIsIncreasing] = useState(true);
-  // const [currentScroll, setCurrentScroll] = useState(0);
-  // const getCurrentScroll = (e) => {
-  //   setCurrentScroll(document.scrollingElement.scrollTop);
-  // };
-  // const findScrollPercentage = (elem) => {
-  //   if (!elem) return 0;
-  //   const position = elem.getBoundingClientRect().top;
-  //   const percentage = currentScroll / (position <= 0 ? 1 : position);
-  //   return percentage;
-  // };
+  const [pageContent, setPageContent] = useState({});
+
   useEffect(() => {
     setTimeout(() => {
       if (isIncreasing) {
@@ -34,6 +29,17 @@ export const Home = () => {
       setIsIncreasing(!isIncreasing);
     }
   }, [showedCharCount, isIncreasing]);
+
+  useEffect(() => {
+    getRequest("/Content/page/Home")
+      .then((res) => {
+        setPageContent(res.contents);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <Page>
       <AdjustableRow minHeight="56vh" minWidth="100%">
@@ -61,7 +67,7 @@ export const Home = () => {
           boxShadow: "0px -3px 30px 0px rgba(0,0,0,0.5)",
         }}
       >
-        <ShortInfo />
+        <ShortInfo content={pageContent?.ShortInfo} />
       </AdjustableRow>
     </Page>
   );

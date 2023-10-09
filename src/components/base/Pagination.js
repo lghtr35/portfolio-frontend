@@ -40,7 +40,9 @@ export const Pagination = (props) => {
           value={props.rowsPerPage}
         >
           {props.options.map((o) => (
-            <option value={o}>{o}</option>
+            <option key={o} value={o}>
+              {o}
+            </option>
           ))}
         </select>
       </div>

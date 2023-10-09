@@ -16,9 +16,6 @@ export const Modal = (props) => {
           top: "50%",
           transform: "translate(-50%, -50%)",
         }}
-        onClick={(e) => {
-          e.preventDefault();
-        }}
       >
         {props.children}
       </div>

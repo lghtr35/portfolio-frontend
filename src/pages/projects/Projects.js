@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import { getRequest } from "../../helpers/request";
-import { colors, SERVER_URL } from "../../helpers/conf";
 import {
   Pagination,
   Page,
   ProjectModal,
   ProjectTile,
 } from "../../components/static.components";
-import { getImageUrl } from "../../helpers/functions";
+import { getFileUrl } from "../../helpers/functions";
 
 export const Projects = () => {
   const fillAndOpenModal = (content) => {
     const images = content.images?.map((img) => {
       return {
-        imageUrl: getImageUrl(img.imageData, img.imageExtension),
+        imageUrl: getFileUrl(img.imageData, img.imageExtension),
         ...img,
       };
     });
@@ -35,12 +34,11 @@ export const Projects = () => {
     setPage(0);
   };
   useEffect(() => {
-    getRequest(`${SERVER_URL}/Project?page=${page}&size=${size}`, {
+    getRequest(`/Project?page=${page}&size=${size}`, {
       "Access-Control-Allow-Origin": "http://localhost:3000",
     })
       .then((res) => {
         if (res) {
-          console.log(res.content);
           setTotalRecords(res.totalRecords);
           const newRows = [];
           for (let i = 0; i < res.content.length / elementsPerRow; i++) {
@@ -48,7 +46,6 @@ export const Projects = () => {
               (i + 1) * elementsPerRow > res.totalRecords
                 ? res.totalRecords - i * elementsPerRow
                 : elementsPerRow;
-            console.log(rowElemCount, Math.floor(res.content.length));
             const row = [];
             for (let j = 0; j < rowElemCount; j++) {
               row.push(res.content[i * elementsPerRow * (page + 1) + j]);
@@ -56,7 +53,6 @@ export const Projects = () => {
             newRows.push(row);
           }
           setRows(newRows);
-          console.log(newRows);
         }
       })
       .catch((err) => {
@@ -92,7 +88,7 @@ export const Projects = () => {
                       <ProjectTile
                         src={
                           val.images.length &&
-                          getImageUrl(
+                          getFileUrl(
                             val.images[0].imageData,
                             val.images[0].imageExtension
                           )
@@ -110,16 +106,20 @@ export const Projects = () => {
               </div>
             );
           })}
-        <ProjectModal
-          projectTitle={content?.projectTitle}
-          projectDescription={content?.projectDescription}
-          link={content?.link}
-          images={images}
-          isOpen={modalOpen}
-          onClose={() => {
-            setModalOpen(false);
-          }}
-        />
+        {content && (
+          <ProjectModal
+            projectId={content.projectId}
+            projectTitle={content.projectTitle}
+            projectDescription={content.projectDescription}
+            link={content.link}
+            images={images}
+            isOpen={modalOpen}
+            isDownloadable={content?.isDownloadable}
+            onClose={() => {
+              setModalOpen(false);
+            }}
+          />
+        )}
       </div>
       <Pagination
         options={[elementsPerRow * 2, elementsPerRow * 3, elementsPerRow * 4]}

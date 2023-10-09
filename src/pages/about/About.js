@@ -5,28 +5,38 @@ import {
   AvatarBox,
   CustomList,
   DocumentViewer,
+  DownloadButton,
   Page,
 } from "../../components/static.components";
 import { colors } from "../../helpers/conf";
 import { Button } from "@mui/material";
-import { isMobileDevice } from "../../helpers/functions";
+import { getFileUrl, isMobileDevice } from "../../helpers/functions";
 import { useEffect, useState } from "react";
+import { getRequest } from "../../helpers/request";
 
 export const About = () => {
   const [isMobile, setIsMobile] = useState(true);
+  const [pageContent, setPageContent] = useState({});
+  const [cv, setCv] = useState(undefined);
 
   useEffect(() => {
     setIsMobile(isMobileDevice());
-  });
 
-  const list = [
-    "Web Development",
-    "Computer Communications",
-    "Internet of Things",
-  ];
-  const aboutMe =
-    " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at blandit leo, malesuada maximus erat. Quisque consequat varius augue, consectetur laoreet lectus commodo et. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In id neque eros. Praesent accumsan molestie est, vitae fermentum purus vestibulum aliquet. Vestibulum tellus quam, tincidunt et fermentum vel, gravida a quam. Donec quis quam erat. Ut velit mauris, aliquet sit amet erat vel, pretium rhoncus nisi. Cras fringilla, sapien a viverra interdum, arcu magna lobortis risus, in placerat felis quam et turpis. Sed mauris mauris, ultricies a lacus dapibus, hendrerit ornare. ";
-  const school = "Istanbul Technical University - Computer Engineering (B.S.)";
+    getRequest("/Image/CV")
+      .then((res) => {
+        console.log(res);
+        setCv(res.imageData);
+      })
+      .catch((err) => console.log(err));
+
+    getRequest("/Content/Page/AboutMe")
+      .then((res) => {
+        setPageContent(res.contents);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <Page style={{ minHeight: "110vh" }}>
       <h1 style={{ padding: "2% 2%", fontSize: 60 }}>About Me</h1>
@@ -40,38 +50,45 @@ export const About = () => {
             <AvatarBox
               src="/placeholder.png"
               avatarSize={isMobile ? "10vh" : "25vh"}
-              text="Serdil Cagin Cakmak"
+              text={pageContent?.MyName && pageContent.MyName.payload}
             ></AvatarBox>
-            <text style={{ fontSize: 20, padding: "5%" }}>{school}</text>
+            <text style={{ fontSize: 20, padding: "5%" }}>
+              {pageContent?.School && pageContent.School.payload}
+            </text>
             {isMobile && (
-              <Button
-                variant="contained"
-                color="success"
-                style={{ padding: "1% 4%", margin: "1% 0" }}
-              >
-                Download CV
-              </Button>
+              <DownloadButton
+                downloadName="Serdil_Cagin_Cakmak_CV"
+                downloadURI={getFileUrl(cv, "pdf")}
+              />
             )}
             <div style={{ display: "flex", padding: "5% 11%" }}>
-              <div style={{ marginRight: "2%" }}>
+              <div style={{ width: "50%", marginRight: "10%" }}>
                 <h3 style={{ fontWeight: 700, fontSize: "140%" }}>Interests</h3>
                 <CustomList
-                  elements={list}
-                  itemStyle={{ fontWeight: 500, color: colors.textDark }}
+                  elements={
+                    pageContent?.InterestsList &&
+                    pageContent.InterestsList.payload.split(",")
+                  }
+                  itemStyle={{ fontWeight: 400, color: colors.textDark }}
                 />
               </div>
-              <div style={{ marginLeft: "2%" }}>
+              <div style={{ width: "50%", marginLeft: "10%" }}>
                 <h3 style={{ fontWeight: 700, fontSize: "140%" }}>
                   Experiences
                 </h3>
                 <CustomList
-                  elements={list}
-                  itemStyle={{ fontWeight: 500, color: colors.textDark }}
+                  elements={
+                    pageContent?.ExperienceList &&
+                    pageContent.ExperienceList.payload.split(",")
+                  }
+                  itemStyle={{ fontWeight: 400, color: colors.textDark }}
                 />
               </div>
             </div>
             <div style={{ textAlign: "center", color: colors.textDark }}>
-              <span>{aboutMe}</span>
+              <span>
+                {pageContent?.MainInfo && pageContent.MainInfo.payload}
+              </span>
             </div>
           </div>
         </AdjustableCol>
@@ -88,16 +105,13 @@ export const About = () => {
               <DocumentViewer
                 height="1000px"
                 width="1000px"
-                src="/Serdil_Cagin_Cakmak_CV.pdf"
+                src={getFileUrl(cv, "pdf")}
               />
             </div>
-            <Button
-              variant="contained"
-              color="success"
-              style={{ padding: "1% 4%", margin: "1% 0" }}
-            >
-              Download
-            </Button>
+            <DownloadButton
+              downloadName="Serdil_Cagin_Cakmak_CV"
+              downloadURI={getFileUrl(cv, "pdf")}
+            />
           </AdjustableCol>
         )}
       </AdjustableRow>

@@ -8,6 +8,7 @@ export { ContactForm } from "./complex/contactForm/ContactForm";
 export { ProjectModal } from "./complex/projectModal/ProjectModal";
 export { Carousel } from "./complex/carousel/Carousel";
 export { ProjectTile } from "./complex/projectTile/ProjectTile";
+export { DownloadButton } from "./complex/downloadButton/DownloadButton";
 
 export { AdjustableRow } from "./base/AdjustableRow";
 export { AdjustableCol } from "./base/AdjustableCol";

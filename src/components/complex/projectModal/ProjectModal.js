@@ -1,9 +1,23 @@
 import { Carousel } from "../carousel/Carousel";
-import { Modal } from "../../static.components";
+import { DownloadButton, Modal } from "../../static.components";
 import { colors } from "../../../helpers/conf";
 import { Button } from "@mui/material";
+import { getFileUrl } from "../../../helpers/functions";
+import { useEffect, useState } from "react";
+import { getRequest } from "../../../helpers/request";
 
 export const ProjectModal = (props) => {
+  const [extension, setExtension] = useState("");
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    getRequest(`/Project/Download/${props.projectId}`)
+      .then((res) => {
+        setExtension(res.projectExtension);
+        setData(res.projectData);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose}>
       <div
@@ -48,9 +62,18 @@ export const ProjectModal = (props) => {
             padding: "2vh",
           }}
         >
-          <Button variant="contained" size="large" href={props.link}>
-            Go to repo
-          </Button>
+          {props.link && (
+            <Button variant="contained" size="large" href={props.link}>
+              Go to repo
+            </Button>
+          )}
+
+          {data && (
+            <DownloadButton
+              downloadName={props.projectTitle.replaceAll(" ", "_")}
+              downloadURI={getFileUrl(data, extension)}
+            />
+          )}
         </div>
       </div>
     </Modal>

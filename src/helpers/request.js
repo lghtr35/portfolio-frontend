@@ -1,7 +1,8 @@
 import axios from "axios";
+import { SERVER_URL } from "./conf";
 
 export const putRequest = (url, data = {}, headers = {}) => {
-  return axios.put(url, data, { headers }).then((response) => {
+  return axios.put(SERVER_URL + url, data, { headers }).then((response) => {
     if (response.data.error) {
       throw response.data.error;
     } else {
@@ -11,7 +12,7 @@ export const putRequest = (url, data = {}, headers = {}) => {
 };
 
 export const getRequest = (url, headers = {}) => {
-  return axios.get(url, { headers }).then((response) => {
+  return axios.get(SERVER_URL + url, { headers }).then((response) => {
     if (response.data.error) {
       throw response.data.error;
     } else {
@@ -21,13 +22,27 @@ export const getRequest = (url, headers = {}) => {
 };
 
 export const postRequest = (url, headers = {}, params = {}, body = {}) => {
-  return axios.post(url, body, { headers, params }).then((response) => {
-    if (response.data.error) {
-      throw response.data.error;
-    } else {
-      return response.data;
-    }
-  });
+  return axios
+    .post(SERVER_URL + url, body, { headers, params })
+    .then((response) => {
+      if (response.data.error) {
+        throw response.data.error;
+      } else {
+        return response.data;
+      }
+    });
+};
+
+export const deleteRequest = (url, headers = {}, params = {}, body = {}) => {
+  return axios
+    .delete(SERVER_URL + url, body, { headers, params })
+    .then((response) => {
+      if (response.data.error) {
+        throw response.data.error;
+      } else {
+        return response.data;
+      }
+    });
 };
 
 function InterceptorsRequest(config) {

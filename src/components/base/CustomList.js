@@ -9,7 +9,7 @@ export const CustomList = (props) => {
       }}
     >
       {props.elements?.map((el) => (
-        <li style={{ ...props.itemStyle }}>
+        <li style={{ ...props.itemStyle }} key={el}>
           <p>{el}</p>
         </li>
       ))}
