@@ -1,0 +1,10 @@
+.navbar-button {
+    padding:1%;
+    margin-top: 1%;
+    transition: 320ms ease-in-out;
+    font-weight: 900;
+    border-radius: 20px;
+}
+.navbar-button:hover {
+    opacity: 0.6;
+}
