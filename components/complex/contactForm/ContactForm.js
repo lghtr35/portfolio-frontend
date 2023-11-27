@@ -16,19 +16,16 @@ export const ContactForm = (props) => {
   const [header, setHeader] = useState("");
   const [message, setMessage] = useState("");
   const [sender, setSender] = useState("");
-  const sendMail = (payload) => {
-    if (!message) return;
-    postRequest(
-      process.env.REACT_APP_SERVER_URL +
-        "/api/" +
-        process.env.REACT_APP_API_VERSION +
-        "/mail",
-      {},
-      {
-        "Content-Type": "application/json",
-      },
-      payload
-    ).catch((err) => console.log("Error sending mail: ", err));
+  const sendMail = (e) => {
+    e.preventDefault();
+    const payload = {
+      destination: "serdilcakmak@gmail.com",
+      sender: sender,
+      subject: header,
+      message: message,
+    };
+    postRequest("/Mail", payload);
+    setIsExpanded(false);
   };
   return (
     <div style={props.style}>
@@ -55,17 +52,7 @@ export const ContactForm = (props) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              sendMail({
-                destination: "serdilcakmak@gmail.com",
-                sender: sender,
-                subject: header,
-                message: message,
-              });
-            }}
-          >
+          <Form onSubmit={sendMail}>
             <Form.Group controlId="emailForm.subject">
               <Form.Control
                 style={{ width: "100%" }}
@@ -98,6 +85,7 @@ export const ContactForm = (props) => {
                 height: "30px",
                 backgroundColor: colors.text,
                 borderColor: colors.primary,
+                cursor: "pointer",
               }}
               variant="success"
               type="submit"

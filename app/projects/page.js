@@ -119,8 +119,9 @@ const Projects = async ({ searchParams }) => {
       <Pagination
         options={[elementsPerRow * 2, elementsPerRow * 3, elementsPerRow * 4]}
         count={totalRecords}
-        page={page}
-        rowsPerPage={size}
+        page={Number(page)}
+        rowsPerPage={Number(size)}
+        href="projects"
       />
     </Page>
   );

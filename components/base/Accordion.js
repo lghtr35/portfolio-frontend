@@ -1,22 +1,30 @@
-"use client";
-import { useState } from "react";
+import { colors } from "@/helpers/conf";
+import Link from "next/link";
 
-export const Accordion = () => {
-  const [isVisible, setIsVisible] = useState(false);
+export const Accordion = (props) => {
+  const isOpen = props?.isOpen ?? false;
   return (
-    <div>
-      <div id="always-visible" onClick={setIsVisible(!isVisible)}></div>
-      <div
-        id="hidden-part"
-        style={{ visibility: getVisibilityAttribute(isVisible) }}
+    <div
+      style={{
+        background: colors.primary,
+        padding: "1.2%",
+        marginBlock: "0.6%",
+      }}
+    >
+      <Link
+        style={{
+          textDecoration: "none",
+          color: colors.textWhite,
+          fontSize: 20,
+          fontWeight: 550,
+        }}
+        href={props.href}
       >
-        Alllaaaaaah
+        <div id="always-visible">{props.title}</div>
+      </Link>
+      <div id="hidden-part" style={{ display: isOpen ? "inline" : "none" }}>
+        {props.children}
       </div>
     </div>
   );
-};
-
-const getVisibilityAttribute = (isVisible) => {
-  if (isVisible) return "visible";
-  return "hidden";
 };

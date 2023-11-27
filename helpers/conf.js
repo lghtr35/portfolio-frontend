@@ -1,14 +1,14 @@
 export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-// export const YAPIKREDI_API_URL = process.env.REACT_APP_YAPIKREDI_API_URL;
-// export const SPOTIFY_ACCOUNT_URL = process.env.REACT_APP_SPOTIFY_ACCOUNT_URL;
-// export const SPOTIFY_API_URL = process.env.REACT_APP_SPOTIFY_API_URL;
-// export const SPOTIFY_ICON_URL = process.env.REACT_APP_SPOTIFY_ICON_URL;
-// export const TWITTER_ICON_URL = process.env.REACT_APP_TWITTER_ICON_URL;
+export const ACCEPTED_EXTENSIONS = {
+  Project: process.env.NEXT_PUBLIC_ACCEPTED_PROJECT_FILE_TYPES,
+  Image: process.env.NEXT_PUBLIC_ACCEPTED_IMAGE_FILE_TYPES,
+};
 
 export const colors = {
   background: "#f2eee2",
+  backgroundSecondary: "#efefef",
   primary: "#0f1626",
-  secondary: "#efefef",
+  secondary: "#ff533d",
   textWhite: "#ffffff",
   text: "#ff533d",
   textDark: "#0b3c5d",

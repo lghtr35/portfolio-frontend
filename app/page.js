@@ -8,9 +8,7 @@ import { ShortInfo } from "@/components/complex/shortInfo/ShortInfo";
 import { getRequest } from "@/helpers/request";
 
 const Home = async () => {
-  const HomeData = await getRequest("/Content/page/Home").catch((err) => {
-    console.log(err);
-  });
+  const HomeData = await getRequest("/Content/page/Home");
   return (
     <Page>
       <AdjustableRow minHeight="62vh" minWidth="100%">

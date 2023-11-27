@@ -8,10 +8,8 @@ import { StringToJSX } from "../stringToJSX/stringToJSX";
 export const ShortInfo = async (props) => {
   const latestProjectsData = await getRequest(`/Project/latest`);
 
-  const latestProjects = latestProjectsData.content;
-  const shortInfo = props.data.shortInfo;
-
-  const importantAbouts = null;
+  const latestProjects = latestProjectsData?.content ?? [];
+  const shortInfo = props?.data.shortInfo;
 
   const boxStyle = {
     width: "100vw",
@@ -34,7 +32,7 @@ export const ShortInfo = async (props) => {
         color: colors.textDark,
       }}
     >
-      {shortInfo && <StringToJSX data={shortInfo.payload} />}
+      {shortInfo && <StringToJSX data={shortInfo?.payload} />}
       <div
         style={{
           display: "flex",

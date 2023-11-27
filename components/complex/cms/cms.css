@@ -1,0 +1,39 @@
+.content-input-container {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 2%;
+}
+
+.content-input {
+    width: 300px;
+    height: 35px;
+    resize: none;
+    margin-inline: 5px;
+    overflow-y: scroll;
+}
+
+.content-input-checkbox {
+    align-self: flex-start;
+    justify-self: flex-start;
+}
+
+.short {
+    width: 150px;
+}
+
+.shorter {
+    width: 75px;
+}
+
+.long {
+    width: 500px;
+}
+
+.thick {
+    height: 100px;
+}
+
+.thin {
+    height: 15px;
+}

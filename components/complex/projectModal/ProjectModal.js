@@ -13,8 +13,8 @@ export const ProjectModal = (props) => {
 
   const page = searchParams.get("page") ?? 0;
   const size = searchParams.get("size") ?? ELEMENTS_PER_ROW * 2;
-  const data = props.downloadable.projectData;
-  const extension = props.downloadable.projectExtension;
+  const data = props.downloadable?.projectData ?? null;
+  const extension = props.downloadable?.projectExtension ?? null;
 
   return (
     <Modal
@@ -28,7 +28,7 @@ export const ProjectModal = (props) => {
       <div
         style={{
           padding: "3vw",
-          backgroundColor: colors.secondary,
+          backgroundColor: colors.backgroundSecondary,
           color: colors.textDark,
           borderRadius: "4%",
           boxShadow: "0px -3px 30px 0px rgba(0,0,0,0.5)",

@@ -1,11 +1,15 @@
-import { AdjustableRow, Page } from "../../components/static.components";
+import { AdjustableRow } from "@/components/base/AdjustableRow";
+import { Page } from "@/components/base/Page";
+import "./login.css";
+import { LoginForm } from "@/components/complex/loginForm/loginForm";
 
-export const Login = () => {
+const Login = () => {
   return (
     <Page>
       <AdjustableRow minHeight="89vh" style={{ paddingTop: "1.5%" }}>
-        <h1 style={{ padding: "1%" }}>Login</h1>
+        <LoginForm />
       </AdjustableRow>
     </Page>
   );
 };
+export default Login;

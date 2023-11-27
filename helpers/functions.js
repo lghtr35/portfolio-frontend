@@ -35,3 +35,15 @@ export function isMobileDevice() {
   }
   return hasTouchScreen;
 }
+
+export const removeItems = (arr, value) => {
+  var i = 0;
+  while (i < arr.length) {
+    if (value.indexOf(arr[i]) > -1) {
+      arr.splice(i, 1);
+    } else {
+      ++i;
+    }
+  }
+  return arr;
+};
