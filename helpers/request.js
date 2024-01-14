@@ -1,19 +1,36 @@
 import { SERVER_URL } from "./conf";
 
-export const putRequest = (url, data = {}, config = {}, headers = {}) => {
-  return putRequestBase(url, JSON.stringify(data), config, {
-    "content-type": "application/json",
-    ...headers,
+export const putRequest = (
+  url,
+  options = { data: {}, config: {}, headers: {}, serverUrl: "" }
+) => {
+  return putRequestBase(url, {
+    data: JSON.stringify(options.data),
+    config: options.config,
+    headers: {
+      "content-type": "application/json",
+      ...options.headers,
+    },
+    serverUrl: options.serverUrl,
   });
 };
 
-export const putRequestBase = (url, data = {}, config = {}, headers = {}) => {
-  return fetch(SERVER_URL + url, {
-    headers: headers,
-    body: data,
+export const putRequestBase = (
+  url,
+  options = { data: {}, config: {}, headers: {}, serverUrl }
+) => {
+  const endpoint =
+    options.serverUrl !== undefined
+      ? options.serverUrl + url
+      : SERVER_URL + url;
+
+  console.log(endpoint, options);
+  return fetch(endpoint, {
+    headers: options.headers,
+    body: options.data,
     method: "PUT",
     mode: "cors",
-    ...config,
+    ...options.config,
   })
     .then((response) => {
       console.log("PUT ", response);
@@ -27,11 +44,20 @@ export const putRequestBase = (url, data = {}, config = {}, headers = {}) => {
     });
 };
 
-export const getRequest = (url, config = {}, headers = {}) => {
-  return fetch(SERVER_URL + url, {
-    headers: headers,
+export const getRequest = (
+  url,
+  options = { config: {}, headers: {}, serverUrl: "" }
+) => {
+  const endpoint =
+    options.serverUrl !== undefined
+      ? options.serverUrl + url
+      : SERVER_URL + url;
+
+  console.log(endpoint, options);
+  return fetch(endpoint, {
+    headers: options.headers,
     mode: "cors",
-    ...config,
+    ...options.config,
   })
     .then((response) => {
       console.log("GET ", response);
@@ -45,20 +71,37 @@ export const getRequest = (url, config = {}, headers = {}) => {
     });
 };
 
-export const postRequest = (url, data = {}, config = {}, headers = {}) => {
-  return postRequestBase(url, JSON.stringify(data), config, {
-    "content-type": "application/json",
-    ...headers,
+export const postRequest = (
+  url,
+  options = { data: {}, config: {}, headers: {}, serverUrl: "" }
+) => {
+  return postRequestBase(url, {
+    data: JSON.stringify(options.data),
+    config: options.config,
+    headers: {
+      "content-type": "application/json",
+      ...options.headers,
+    },
+    serverUrl: options.serverUrl,
   });
 };
 
-export const postRequestBase = (url, data = {}, config = {}, headers = {}) => {
-  return fetch(SERVER_URL + url, {
-    headers: headers,
-    body: data,
+export const postRequestBase = (
+  url,
+  options = { data: {}, config: {}, headers: {}, serverUrl: "" }
+) => {
+  const endpoint =
+    options.serverUrl !== undefined
+      ? options.serverUrl + url
+      : SERVER_URL + url;
+
+  console.log(endpoint, options);
+  return fetch(endpoint, {
+    headers: options.headers,
+    body: options.data,
     method: "POST",
     mode: "cors",
-    ...config,
+    ...options.config,
   })
     .then((response) => {
       console.log("POST ", response);
@@ -72,12 +115,21 @@ export const postRequestBase = (url, data = {}, config = {}, headers = {}) => {
     });
 };
 
-export const deleteRequest = (url, config = {}, headers = {}) => {
-  return fetch(SERVER_URL + url, {
-    headers: headers,
+export const deleteRequest = (
+  url,
+  options = { config: {}, headers: {}, serverUrl: "" }
+) => {
+  const endpoint =
+    options.serverUrl !== undefined
+      ? options.serverUrl + url
+      : SERVER_URL + url;
+
+  console.log(endpoint, options);
+  return fetch(endpoint, {
+    headers: options.headers,
     method: "DELETE",
     mode: "cors",
-    ...config,
+    ...options.config,
   })
     .then((response) => {
       console.log("DELETE ", response);

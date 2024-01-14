@@ -27,12 +27,11 @@ export const ContentManager = (props) => {
       location: e.target["content-location"].value,
       payload: e.target["content-payload"].value,
     };
-    postRequest(
-      "/Content",
-      body,
-      { credentials: "include" },
-      { "content-type": "application/json" }
-    );
+    postRequest("/Content", {
+      data: body,
+      config: { credentials: "include" },
+      serverUrl: props.server,
+    });
     setShouldRefetch(shouldRefetch + 1);
   };
 
@@ -54,23 +53,21 @@ export const ContentManager = (props) => {
           : e.target["content-payload"].value,
     };
     if (body.place || body.location || body.payload) {
-      putRequest(
-        "/Content",
-        body,
-        { credentials: "include" },
-        { "content-type": "application/json" }
-      );
+      putRequest("/Content", {
+        data: body,
+        config: { credentials: "include" },
+        serverUrl: props.server,
+      });
       setShouldRefetch(shouldRefetch + 1);
     }
   };
 
   const sendDeleteRequest = (e) => {
     e.preventDefault();
-    deleteRequest(
-      `/Content?id=${e.target["content-id"].value}`,
-      { credentials: "include" },
-      { "content-type": "application/json" }
-    );
+    deleteRequest(`/Content?id=${e.target["content-id"].value}`, {
+      config: { credentials: "include" },
+      serverUrl: props.server,
+    });
     setShouldRefetch(shouldRefetch + 1);
   };
 
@@ -99,7 +96,10 @@ export const ContentManager = (props) => {
 
   useEffect(() => {
     getRequest(`/Content?page=${page}&size=${size}`, {
-      credentials: "include",
+      config: {
+        credentials: "include",
+      },
+      serverUrl: props.server,
     }).then((res) => {
       setData(res);
     });

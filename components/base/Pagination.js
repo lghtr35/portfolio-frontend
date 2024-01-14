@@ -69,7 +69,7 @@ export const Pagination = (props) => {
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
           href={
-            totalPage > props.page
+            totalPage > props.page + 1
               ? `/${props.href}?page=${props.page + 1}&size=${size}`
               : `/${props.href}?page=${props.page}&size=${size}`
           }

@@ -19,21 +19,21 @@ export const AdminPanel = (props) => {
           title="Content Management"
           href={isContent ? "admin" : "admin?panel=content"}
         >
-          <ContentManager mode={props?.mode} />
+          <ContentManager mode={props?.mode} server={props.server} />
         </Accordion>
         <Accordion
           isOpen={isProject}
           title="Project Management"
           href={isProject ? "admin" : "admin?panel=project"}
         >
-          <ProjectManager mode={props?.mode} />
+          <ProjectManager mode={props?.mode} server={props.server} />
         </Accordion>
         <Accordion
           isOpen={isImage}
           title="Image Management"
           href={isImage ? "admin" : "admin?panel=image"}
         >
-          <ImageManager mode={props?.mode} />
+          <ImageManager mode={props?.mode} server={props.server} />
         </Accordion>
       </div>
     </div>

@@ -29,10 +29,17 @@ export const ProjectManager = (props) => {
     if (e.target["project-link"].value !== "")
       formData.append("Link", e.target["project-link"].value);
     formData.append("ProjectFile", e.target["project-file"].files[0]);
-    if (e.target["project-images"].files.length > 0)
-      formData.append("ProjectImages", e.target["project-images"].files);
+    if (e.target["project-images"].files.length > 0) {
+      for (const file of Array.from(e.target["project-images"].files)) {
+        formData.append("ProjectImages", file);
+      }
+    }
 
-    postRequestBase("/Project", formData, { credentials: "include" });
+    postRequestBase("/Project", {
+      data: formData,
+      config: { credentials: "include" },
+      serverUrl: props.server,
+    });
     setShouldRefetch(shouldRefetch + 1);
   };
 
@@ -56,14 +63,21 @@ export const ProjectManager = (props) => {
     if (e.target["project-file"].files?.[0])
       formData.append("ProjectFile", e.target["project-file"].files[0]);
 
-    putRequestBase("/Project", formData, { credentials: "include" });
+    putRequestBase("/Project", {
+      data: formData,
+      config: { credentials: "include" },
+      serverUrl: props.server,
+    });
     setShouldRefetch(shouldRefetch + 1);
   };
 
   const sendDeleteRequest = (e) => {
     e.preventDefault();
     deleteRequest(`/Project?id=${e.target["project-id"].value}`, {
-      credentials: "include",
+      config: {
+        credentials: "include",
+      },
+      serverUrl: props.server,
     });
     setShouldRefetch(shouldRefetch + 1);
   };
@@ -89,11 +103,18 @@ export const ProjectManager = (props) => {
     setIsCreate(mode === "create");
     setIsUpdate(mode === "update");
     setIsDelete(mode === "delete");
+
+    setInterval(() => {
+      setShouldRefetch(shouldRefetch + 1);
+    }, 180000);
   }, [props?.mode]);
 
   useEffect(() => {
     getRequest(`/Project?page=${page}&size=${size}`, {
-      credentials: "include",
+      config: {
+        credentials: "include",
+      },
+      serverUrl: props.server,
     }).then((res) => {
       setData(res);
     });

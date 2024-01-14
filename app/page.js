@@ -7,8 +7,14 @@ import { Greeting } from "@/components/complex/greeting/greeting";
 import { ShortInfo } from "@/components/complex/shortInfo/ShortInfo";
 import { getRequest } from "@/helpers/request";
 
+export const metadata = {
+  title: "Home",
+};
+
 const Home = async () => {
-  const HomeData = await getRequest("/Content/page/Home");
+  const HomeData = await getRequest("/Content/page/Home", {
+    config: { next: { revalidate: 0 } },
+  });
   return (
     <Page>
       <AdjustableRow minHeight="62vh" minWidth="100%">

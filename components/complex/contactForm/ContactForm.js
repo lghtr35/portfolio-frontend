@@ -24,7 +24,7 @@ export const ContactForm = (props) => {
       subject: header,
       message: message,
     };
-    postRequest("/Mail", payload);
+    postRequest("/Mail", { data: payload });
     setIsExpanded(false);
   };
   return (

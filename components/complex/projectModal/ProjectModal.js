@@ -68,7 +68,13 @@ export const ProjectModal = (props) => {
           }}
         >
           {props.link && (
-            <Button variant="contained" size="large" href={props.link}>
+            <Button
+              variant="contained"
+              size="large"
+              href={props.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Go to repo
             </Button>
           )}

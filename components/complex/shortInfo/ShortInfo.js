@@ -6,7 +6,9 @@ import { Carousel } from "@/components/base/Carousel";
 import { StringToJSX } from "../stringToJSX/stringToJSX";
 
 export const ShortInfo = async (props) => {
-  const latestProjectsData = await getRequest(`/Project/latest`);
+  const latestProjectsData = await getRequest(`/Project/latest`, {
+    config: { next: { revalidate: 0 } },
+  });
 
   const latestProjects = latestProjectsData?.content ?? [];
   const shortInfo = props?.data.shortInfo;

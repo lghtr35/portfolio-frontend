@@ -1,0 +1,44 @@
+version: "3"
+services:
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+  webapi:
+    image: portfolio-backend
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:12000"
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - database
+    volumes:
+      - blob-data:/API/
+      - data-protection:/root/.aspnet/DataProtection-Keys
+      - ~/.aspnet/https:/https:ro
+
+  webapp:
+    depends_on:
+      - webapi
+    environment:
+      SERVER_URL: http://webapi:12000/api/v1
+    image: portfolio-frontend
+
+  nginx:
+    image: portfolio-nginx
+    depends_on:
+      - webapp
+    ports:
+      - 80:80
+
+volumes:
+  blob-data:
+  database-data:
+  data-protection:

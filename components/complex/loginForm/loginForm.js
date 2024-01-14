@@ -4,18 +4,22 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const requestLogin = async (e) => {
-  e.preventDefault();
-  const body = {
-    password: e.target["login-form-password"].value,
-    username: e.target["login-form-username"].value,
-  };
-  return postRequest("/Admin/Login", body, { credentials: "include" });
-};
-
-export const LoginForm = () => {
+export const LoginForm = (props) => {
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false);
+
+  const requestLogin = async (e) => {
+    e.preventDefault();
+    const body = {
+      password: e.target["login-form-password"].value,
+      username: e.target["login-form-username"].value,
+    };
+    return postRequest("/Admin/Login", {
+      data: body,
+      config: { credentials: "include" },
+      serverUrl: props.server,
+    });
+  };
 
   useEffect(() => {
     if (isLogged) router.push("/admin");

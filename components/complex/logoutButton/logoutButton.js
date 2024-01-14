@@ -11,5 +11,8 @@ export const LogoutButton = () => {
 };
 
 const Logout = async () => {
-  postRequest("/Admin/Logout", {}, { credentials: "include" });
+  postRequest("/Admin/Logout", {
+    config: { credentials: "include" },
+    serverUrl: props.server,
+  });
 };

@@ -9,7 +9,7 @@ import { AdjustableCol } from "@/components/base/AdjustableCol";
 
 export const CvViewer = (props) => {
   const [isMobile, setIsMobile] = useState(false);
-  const cv = props.cv;
+  const cv = props?.cv ?? { imageData: "", imageExtension: "" };
   useEffect(() => {
     setIsMobile(isMobileDevice());
   }, []);

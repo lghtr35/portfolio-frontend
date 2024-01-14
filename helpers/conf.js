@@ -1,4 +1,4 @@
-export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+export const SERVER_URL = process.env.SERVER_URL;
 export const ACCEPTED_EXTENSIONS = {
   Project: process.env.NEXT_PUBLIC_ACCEPTED_PROJECT_FILE_TYPES,
   Image: process.env.NEXT_PUBLIC_ACCEPTED_IMAGE_FILE_TYPES,

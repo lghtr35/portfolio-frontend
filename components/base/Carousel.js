@@ -38,7 +38,7 @@ export const Carousel = (props) => {
             ...props.style,
           }}
         >
-          {slides[current.toString()].title && (
+          {slides[current.toString()]?.title && (
             <span
               style={{
                 color: colors.text,
@@ -46,7 +46,7 @@ export const Carousel = (props) => {
                 fontSize: "1.3rem",
               }}
             >
-              {slides[current.toString()].title}
+              {slides[current.toString()]?.title ?? "Not Loaded"}
             </span>
           )}
           <div
@@ -73,7 +73,7 @@ export const Carousel = (props) => {
           <div>
             <img
               style={{ objectFit: "cover", ...props.imageStyle }}
-              src={slides[current.toString()].src}
+              src={slides[current.toString()]?.src}
               alt={current.toString()}
             />
           </div>

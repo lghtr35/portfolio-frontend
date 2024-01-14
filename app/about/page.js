@@ -10,21 +10,28 @@ import { CustomList } from "@/components/base/CustomList";
 import { CvViewer } from "@/components/complex/cvViewer/cvViewer";
 import { CvDownloader } from "@/components/complex/cvDownloader/cvDownloader";
 
-const About = async () => {
-  const AboutResponse = await getRequest("/Content/Page/AboutMe").catch(
-    (err) => {
-      console.log("Error in content get at AboutMe ", err);
-    }
-  );
-  const pageContent = AboutResponse.contents;
+export const metadata = {
+  title: "About Me",
+};
 
-  const cv = await getRequest("/Image/CV").catch((err) => {
+const About = async () => {
+  const AboutResponse = await getRequest("/Content/Page/AboutMe", {
+    config: { next: { revalidate: 0 } },
+  }).catch((err) => {
+    console.log("Error in content get at AboutMe ", err);
+  });
+  const pageContent = AboutResponse?.contents ?? "";
+
+  const cv = await getRequest("/Image/CV", {
+    config: { next: { revalidate: 0 } },
+  }).catch((err) => {
     console.log("Error in cv get at AboutMe ", err);
   });
 
   const avatarImg = pageContent?.avatarImage
     ? await getRequest(
-        `/Image/${pageContent.avatarImage.payload.replace("img:", "")}`
+        `/Image/${pageContent.avatarImage.payload.replace("img:", "")}`,
+        { config: { next: { revalidate: 0 } } }
       ).catch((err) => {
         console.log("Error in avatar img get at AboutMe ", err);
       })
@@ -40,7 +47,10 @@ const About = async () => {
           <div style={{ paddingBlock: 20, paddingInline: 60 }}>
             {avatarImg && pageContent?.MyName && (
               <AvatarBox
-                src={getFileUrl(avatarImg.imageData, avatarImg.imageExtension)}
+                src={getFileUrl(
+                  avatarImg?.imageData ?? "",
+                  avatarImg?.imageExtension ?? ""
+                )}
                 avatarSize={"25vh"}
                 text={pageContent?.MyName && pageContent.MyName.payload}
               ></AvatarBox>

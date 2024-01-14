@@ -28,7 +28,11 @@ export const ImageManager = (props) => {
 
     formData.append("ImageFile", e.target["image-file"].files[0]);
 
-    postRequestBase("/Image", formData, { credentials: "include" });
+    postRequestBase("/Image", {
+      data: formData,
+      config: { credentials: "include" },
+      serverUrl: props.server,
+    });
     setShouldRefetch(shouldRefetch + 1);
   };
 
@@ -47,14 +51,21 @@ export const ImageManager = (props) => {
     if (e.target["image-file"].files?.[0])
       formData.append("ImageFile", e.target["image-file"].files[0]);
 
-    putRequestBase("/Image", formData, { credentials: "include" });
+    putRequestBase("/Image", {
+      data: formData,
+      config: { credentials: "include" },
+      serverUrl: props.server,
+    });
     setShouldRefetch(shouldRefetch + 1);
   };
 
   const sendDeleteRequest = (e) => {
     e.preventDefault();
     deleteRequest(`/Image?id=${e.target["image-id"].value}`, {
-      credentials: "include",
+      config: {
+        credentials: "include",
+      },
+      serverUrl: props.server,
     });
     setShouldRefetch(shouldRefetch + 1);
   };
@@ -82,7 +93,10 @@ export const ImageManager = (props) => {
     setIsDelete(mode === "delete");
 
     getRequest(`/Project?page=0&size=10000`, {
-      credentials: "include",
+      config: {
+        credentials: "include",
+      },
+      serverUrl: props.server,
     }).then((res) => {
       const ids = res.content.map((val) => {
         return val.projectId;
@@ -93,7 +107,10 @@ export const ImageManager = (props) => {
 
   useEffect(() => {
     getRequest(`/Image?page=${page}&size=${size}`, {
-      credentials: "include",
+      config: {
+        credentials: "include",
+      },
+      serverUrl: props.server,
     }).then((res) => {
       setData(res);
     });

@@ -15,10 +15,14 @@ const fillAndOpenModal = async (id, list) => {
     return getFileUrl(img.imageData, img.imageExtension);
   });
 
-  const downloadable = await getRequest(`/Project/Download/${id}`).catch(
+  const downloadable = await getRequest(`/Project/Download/${id}`, {}).catch(
     (err) => console.log(err)
   );
   return { project, images, downloadable };
+};
+
+export const metadata = {
+  title: "Projects",
 };
 
 const Projects = async ({ searchParams }) => {
@@ -28,14 +32,14 @@ const Projects = async ({ searchParams }) => {
   const modalOpen = searchParams["is_modal_open"] ?? false;
   const projectId = searchParams["project_id"] ?? null;
 
-  const resp = await getRequest(`/Project?page=${page}&size=${size}`).catch(
-    (err) => console.log(err)
-  );
-  const totalRecords = resp.totalRecords;
+  const resp = await getRequest(`/Project?page=${page}&size=${size}`, {
+    config: { next: { revalidate: 0 } },
+  }).catch((err) => console.log(err));
+  const totalRecords = resp?.totalRecords ?? 0;
   const rows = [];
   const { project, images, downloadable } =
-    (await fillAndOpenModal(projectId, resp.content)) ?? {};
-  for (let i = 0; i < resp.content.length / elementsPerRow; i++) {
+    (await fillAndOpenModal(projectId, resp?.content ?? {})) ?? {};
+  for (let i = 0; i < resp?.content?.length ?? 0 / elementsPerRow; i++) {
     const rowElemCount =
       (i + 1) * elementsPerRow > resp.totalRecords
         ? resp.totalRecords - i * elementsPerRow
@@ -74,8 +78,6 @@ const Projects = async ({ searchParams }) => {
                     val && (
                       <Link
                         style={{
-                          width: "100%",
-                          height: "100%",
                           textDecoration: "none",
                           color: "inherit",
                         }}
