@@ -1,24 +1,13 @@
 version: "3"
 services:
-  database:
-    image: postgres
-    restart: always
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: db
-    volumes:
-      - database-data:/var/lib/postgresql/data/
-
   webapi:
     image: portfolio-backend
     environment:
-      ASPNETCORE_URLS: "http://0.0.0.0:12000"
+      ASPNETCORE_URLS: "http://0.0.0.0:4426"
       ASPNETCORE_ENVIRONMENT: Development
-    depends_on:
-      - database
+      # ASPNETCORE_HTTPS_PORT: 5001
+      # ASPNETCORE_Kestrel__Certificates__Default__Password: password
+      # ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
     volumes:
       - blob-data:/API/
       - data-protection:/root/.aspnet/DataProtection-Keys
@@ -28,7 +17,7 @@ services:
     depends_on:
       - webapi
     environment:
-      SERVER_URL: http://webapi:12000/api/v1
+      SERVER_URL: http://webapi:4426/api/v1
     image: portfolio-frontend
 
   nginx:
@@ -40,5 +29,4 @@ services:
 
 volumes:
   blob-data:
-  database-data:
   data-protection:
