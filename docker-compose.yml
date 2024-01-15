@@ -29,7 +29,7 @@ services:
       - 443:443
     restart: always
     volumes:
-      - ./nginx/conf/:~/app/porfolio-frontend/nginx:ro
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./certbot/www/:/var/www/certbot/:ro
 
   certbot:
@@ -37,6 +37,8 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
+    depends_on:
+      - nginx
 
 volumes:
   blob-data:
