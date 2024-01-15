@@ -1,27 +1,29 @@
 version: "3"
 services:
-  # webapi:
-  #   image: portfolio-backend
-  #   environment:
-  #     ASPNETCORE_URLS: "http://0.0.0.0:4426"
-  #     ASPNETCORE_ENVIRONMENT: Development
-  #     # ASPNETCORE_HTTPS_PORT: 5001
-  #     # ASPNETCORE_Kestrel__Certificates__Default__Password: password
-  #     # ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
-  #   volumes:
-  #     - blob-data:/API/
-  #     - data-protection:/root/.aspnet/DataProtection-Keys
-  #     - ~/.aspnet/https:/https:ro
+  webapi:
+    image: portfolio-backend
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:4426"
+      ASPNETCORE_ENVIRONMENT: Development
+      # ASPNETCORE_HTTPS_PORT: 5001
+      # ASPNETCORE_Kestrel__Certificates__Default__Password: password
+      # ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+    volumes:
+      - blob-data:/API/
+      - data-protection:/root/.aspnet/DataProtection-Keys
+      - ~/.aspnet/https:/https:ro
 
-  # webapp:
-  #   depends_on:
-  #     - webapi
-  #   environment:
-  #     SERVER_URL: http://webapi:4426/api/v1
-  #   image: portfolio-frontend
+  webapp:
+    depends_on:
+      - webapi
+    environment:
+      SERVER_URL: http://webapi:4426/api/v1
+    image: portfolio-frontend
 
   nginx:
     image: nginx:latest
+    depends_on:
+      - webapp
     ports:
       - 80:80
       - 443:443
