@@ -13,7 +13,7 @@ export const metadata = {
 
 const Home = async () => {
   const HomeData = await getRequest("/Content/page/Home", {
-    config: { next: { revalidate: 0 } },
+    config: { next: { revalidate: 600 } },
   });
   return (
     <Page>

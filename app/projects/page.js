@@ -33,7 +33,7 @@ const Projects = async ({ searchParams }) => {
   const projectId = searchParams["project_id"] ?? null;
 
   const resp = await getRequest(`/Project?page=${page}&size=${size}`, {
-    config: { next: { revalidate: 0 } },
+    config: { next: { revalidate: 240 } },
   }).catch((err) => console.log(err));
   const totalRecords = resp?.totalRecords ?? 0;
   const rows = [];
