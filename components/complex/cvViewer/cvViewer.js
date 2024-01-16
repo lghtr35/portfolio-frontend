@@ -27,7 +27,6 @@ export const CvViewer = (props) => {
           background: colors.background,
           height: "100%",
           width: "100%",
-          paddingInline: "1.5%",
         }}
       >
         <DocumentViewer
