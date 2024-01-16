@@ -87,7 +87,6 @@ const About = async () => {
                 {pageContent?.MainInfo && pageContent.MainInfo.payload}
               </span>
             </div>
-            <CvDownloader cv={cv} />
           </div>
         </AdjustableCol>
         <CvViewer cv={cv} />

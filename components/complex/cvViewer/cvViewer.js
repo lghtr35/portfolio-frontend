@@ -1,8 +1,8 @@
 import { DocumentViewer } from "@/components/base/DocumentViewer";
 import { colors } from "@/helpers/conf";
 import { getFileUrl } from "@/helpers/functions";
-import { DownloadButton } from "../downloadButton/DownloadButton";
 import { AdjustableCol } from "@/components/base/AdjustableCol";
+import { CvDownloader } from "../cvDownloader/cvDownloader";
 
 export const CvViewer = (props) => {
   const cv = props?.cv ?? { imageData: "", imageExtension: "" };
@@ -18,16 +18,13 @@ export const CvViewer = (props) => {
       >
         <div style={{ background: colors.background }}>
           <DocumentViewer
-            height="850vh"
-            width="800vw"
+            height="100%"
+            width="100%"
             src={getFileUrl(cv.imageData, cv.imageExtension)}
           />
         </div>
 
-        <DownloadButton
-          downloadName="Serdil_Cagin_Cakmak_CV"
-          downloadURI={getFileUrl(cv.imageData, cv.imageExtension)}
-        />
+        <CvDownloader cv={cv} />
       </AdjustableCol>
     )
   );
