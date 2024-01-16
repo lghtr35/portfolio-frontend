@@ -26,7 +26,7 @@ export const CvViewer = (props) => {
         >
           <DocumentViewer
             height="99%"
-            width="100%"
+            width="98%"
             src={getFileUrl(cv.imageData, cv.imageExtension)}
           />
         </div>
