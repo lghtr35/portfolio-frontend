@@ -13,29 +13,33 @@ export const CvViewer = (props) => {
   useEffect(() => {
     setIsMobile(isMobileDevice());
   }, []);
-  return !isMobile ? (
-    <AdjustableCol
-      style={{
-        width: "60%",
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      <div style={{ background: colors.background }}>
-        <DocumentViewer
-          height="850vh"
-          width="800vw"
-          src={getFileUrl(cv.imageData, cv.imageExtension)}
-        />
-      </div>
+  console.log(isMobileDevice());
+  return (
+    props?.cv &&
+    (!isMobile ? (
+      <AdjustableCol
+        style={{
+          width: "60%",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div style={{ background: colors.background }}>
+          <DocumentViewer
+            height="850vh"
+            width="800vw"
+            src={getFileUrl(cv.imageData, cv.imageExtension)}
+          />
+        </div>
 
-      <DownloadButton
-        downloadName="Serdil_Cagin_Cakmak_CV"
-        downloadURI={getFileUrl(cv.imageData, cv.imageExtension)}
-      />
-    </AdjustableCol>
-  ) : (
-    ""
+        <DownloadButton
+          downloadName="Serdil_Cagin_Cakmak_CV"
+          downloadURI={getFileUrl(cv.imageData, cv.imageExtension)}
+        />
+      </AdjustableCol>
+    ) : (
+      ""
+    ))
   );
 };
