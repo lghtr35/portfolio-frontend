@@ -21,10 +21,11 @@ export const CvViewer = (props) => {
             background: colors.background,
             height: "100%",
             width: "100%",
+            paddingInline: "1.5%",
           }}
         >
           <DocumentViewer
-            height="100%"
+            height="99%"
             width="100%"
             src={getFileUrl(cv.imageData, cv.imageExtension)}
           />
