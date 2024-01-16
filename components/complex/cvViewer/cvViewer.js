@@ -1,22 +1,13 @@
-"use client";
-
 import { DocumentViewer } from "@/components/base/DocumentViewer";
 import { colors } from "@/helpers/conf";
-import { getFileUrl, isMobileDevice } from "@/helpers/functions";
-import { useEffect, useState } from "react";
+import { getFileUrl } from "@/helpers/functions";
 import { DownloadButton } from "../downloadButton/DownloadButton";
 import { AdjustableCol } from "@/components/base/AdjustableCol";
 
 export const CvViewer = (props) => {
-  const [isMobile, setIsMobile] = useState(false);
   const cv = props?.cv ?? { imageData: "", imageExtension: "" };
-  useEffect(() => {
-    setIsMobile(isMobileDevice());
-  }, []);
-  console.log(isMobileDevice());
   return (
-    props?.cv &&
-    (!isMobile ? (
+    props?.cv && (
       <AdjustableCol
         style={{
           width: "60%",
@@ -38,8 +29,6 @@ export const CvViewer = (props) => {
           downloadURI={getFileUrl(cv.imageData, cv.imageExtension)}
         />
       </AdjustableCol>
-    ) : (
-      ""
-    ))
+    )
   );
 };
