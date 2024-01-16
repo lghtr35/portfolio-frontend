@@ -16,7 +16,13 @@ export const CvViewer = (props) => {
           flexDirection: "column",
         }}
       >
-        <div style={{ background: colors.background }}>
+        <div
+          style={{
+            background: colors.background,
+            height: "100%",
+            width: "100%",
+          }}
+        >
           <DocumentViewer
             height="100%"
             width="100%"
