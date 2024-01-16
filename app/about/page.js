@@ -42,7 +42,7 @@ const About = async () => {
       <AdjustableRow
         style={{ display: "flex", flexDirection: "row", height: "100%" }}
       >
-        <AdjustableCol style={{ width: "100%", height: "inherit" }}>
+        <AdjustableCol style={{ width: "70%", height: "inherit" }}>
           <div style={{ paddingBlock: 20, paddingInline: 60 }}>
             {avatarImg && pageContent?.MyName && (
               <AvatarBox
