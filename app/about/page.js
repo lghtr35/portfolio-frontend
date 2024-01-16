@@ -23,7 +23,7 @@ const About = async () => {
   const pageContent = AboutResponse?.contents ?? "";
 
   const cv = await getRequest("/Image/CV", {
-    config: { next: { revalidate: 120 } },
+    config: { next: { revalidate: 0 } },
   }).catch((err) => {
     console.log("Error in cv get at AboutMe ", err);
   });
@@ -31,7 +31,7 @@ const About = async () => {
   const avatarImg = pageContent?.avatarImage
     ? await getRequest(
         `/Image/${pageContent.avatarImage.payload.replace("img:", "")}`,
-        { config: { next: { revalidate: 120 } } }
+        { config: { next: { revalidate: 0 } } }
       ).catch((err) => {
         console.log("Error in avatar img get at AboutMe ", err);
       })
