@@ -1,3 +1,4 @@
+"use client";
 import { getFileUrl } from "@/helpers/functions";
 import { DownloadButton } from "../downloadButton/DownloadButton";
 

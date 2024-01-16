@@ -8,7 +8,6 @@ import { AdjustableCol } from "@/components/base/AdjustableCol";
 import { AvatarBox } from "@/components/base/AvatarBox";
 import { CustomList } from "@/components/base/CustomList";
 import { CvViewer } from "@/components/complex/cvViewer/cvViewer";
-import { CvDownloader } from "@/components/complex/cvDownloader/cvDownloader";
 
 export const metadata = {
   title: "About Me",
