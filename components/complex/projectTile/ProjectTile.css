@@ -14,12 +14,12 @@
 
 @media screen and (max-width: 1024px){
     .project-tiles{
-        width: 100%;
+        width: 98%;
         height: 250px;
     }
 
     .project-tiles-image {
-        height: 100px;
-        width: 100px;
+        height: 120px;
+        width: 120px;
     }
 }
