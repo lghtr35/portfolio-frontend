@@ -1,4 +1,25 @@
+.project-tiles {
+    width: 23vw;
+    height: 44vh;
+}
 .project-tiles:hover {
     opacity: 0.8;
     transition: 0.5s ease-in-out;
+}
+
+.project-tiles-image {
+    height: 30vh;
+    width: 18vw;
+}
+
+@media screen and (max-width: 767px){
+    .project-tiles{
+        width: 180px;
+        height: 180px;
+    }
+
+    .project-tiles-image {
+        height: 135px;
+        width: 135px;
+    }
 }

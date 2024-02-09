@@ -6,8 +6,6 @@ export const ProjectTile = (props) => {
     <div
       style={{
         backgroundColor: colors.primary,
-        width: "23vw",
-        height: "44vh",
         display: "flex",
         flexDirection: "column",
         boxShadow: "0px -3px 30px 0px rgba(0,0,0,0.58)",
@@ -26,8 +24,6 @@ export const ProjectTile = (props) => {
       </div>
       <img
         style={{
-          height: "30vh",
-          width: "18vw",
           objectFit: "cover",
           alignSelf: "center",
           margin: "1%",
@@ -37,6 +33,7 @@ export const ProjectTile = (props) => {
         }}
         src={props.src}
         alt={`project_tile_${props.projectTitle}`}
+        className="project-tiles-image"
       />
     </div>
   );

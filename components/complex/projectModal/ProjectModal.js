@@ -6,8 +6,15 @@ import { Modal } from "@/components/base/Modal";
 import { Carousel } from "@/components/base/Carousel";
 import { DownloadButton } from "../downloadButton/DownloadButton";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 export const ProjectModal = (props) => {
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  useEffect(() => {
+    setIsMobileDevice(isMobile);
+  }, []);
+
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -49,10 +56,17 @@ export const ProjectModal = (props) => {
 
         {props.images.length > 0 && (
           <Carousel
-            imageStyle={{
-              width: "750px",
-              height: "500px",
-            }}
+            imageStyle={
+              !isMobileDevice
+                ? {
+                    width: "750px",
+                    height: "500px",
+                  }
+                : {
+                    width: "200px",
+                    height: "160px",
+                  }
+            }
             images={props.images}
           />
         )}

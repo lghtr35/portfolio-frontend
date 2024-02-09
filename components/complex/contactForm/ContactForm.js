@@ -23,7 +23,40 @@ export const ContactForm = (props) => {
       subject: header,
       message: message,
     };
-    postRequest("/Mail", { data: payload, serverUrl: "/api/v1" });
+    postRequest("/Mail", { data: payload, serverUrl: "/api/v1" })
+      .then((resp) => {
+        const button = document.getElementById("contact-form-send-button");
+        if (resp) {
+          button.style["backgroundColor"] = "#52b963";
+          button.style["background-color"] = "#52b963";
+          button.innerHTML = "Sent successfully";
+          setTimeout(() => {
+            button.style["backgroundColor"] = colors.text;
+            button.style["background-color"] = colors.text;
+            button.innerHTML = "Send";
+          }, 2000);
+        } else {
+          button.style["backgroundColor"] = "#CC0202";
+          button.style["background-color"] = "#CC0202";
+          button.innerHTML = "Failed! Try again";
+          setTimeout(() => {
+            button.style["backgroundColor"] = colors.text;
+            button.style["background-color"] = colors.text;
+            button.innerHTML = "Send";
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        const button = document.getElementById("contact-form-send-button");
+        button.style["backgroundColor"] = "#CC0202";
+        button.style["background-color"] = "#CC0202";
+        button.innerHTML = "Failed! Try again";
+        setTimeout(() => {
+          button.style["backgroundColor"] = colors.text;
+          button.style["background-color"] = colors.text;
+          button.innerHTML = "Send";
+        }, 2000);
+      });
     setIsExpanded(false);
   };
   return (
@@ -88,6 +121,7 @@ export const ContactForm = (props) => {
               }}
               variant="success"
               type="submit"
+              id="contact-form-send-button"
             >
               Send
             </Button>
