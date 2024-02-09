@@ -6,6 +6,7 @@ import { ProjectModal } from "@/components/complex/projectModal/ProjectModal";
 import { Pagination } from "@/components/base/Pagination";
 import { ELEMENTS_PER_ROW } from "@/helpers/conf";
 import Link from "next/link";
+import "./Project.css";
 
 const fillAndOpenModal = async (id, list) => {
   if (!id) return null;
@@ -68,9 +69,8 @@ const Projects = async ({ searchParams }) => {
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  width: "100%",
-                  height: "50vh",
                 }}
+                className="project-row"
                 key={i}
               >
                 {v.map((val, ind) => {

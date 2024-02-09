@@ -12,14 +12,14 @@
     width: 18vw;
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 1024px){
     .project-tiles{
-        width: 180px;
-        height: 180px;
+        width: 100%;
+        height: 250px;
     }
 
     .project-tiles-image {
-        height: 135px;
-        width: 135px;
+        height: 100px;
+        width: 100px;
     }
 }
