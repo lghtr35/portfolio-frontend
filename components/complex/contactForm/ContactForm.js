@@ -23,7 +23,7 @@ export const ContactForm = (props) => {
       subject: header,
       message: message,
     };
-    postRequest("/Mail", { data: payload });
+    postRequest("/Mail", { data: payload, serverUrl: "/api/v1" });
     setIsExpanded(false);
   };
   return (
