@@ -19,7 +19,6 @@ export const ContactForm = (props) => {
   const sendMail = (e) => {
     e.preventDefault();
     const payload = {
-      destination: "serdilcakmak@gmail.com",
       sender: sender,
       subject: header,
       message: message,
