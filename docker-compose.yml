@@ -23,6 +23,7 @@ services:
     image: portfolio-backend
     depends_on:
       - webapp
+      - postgres
     environment:
       ASPNETCORE_URLS: "http://0.0.0.0:4426"
       ASPNETCORE_ENVIRONMENT: Development
