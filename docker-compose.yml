@@ -56,3 +56,4 @@ services:
 volumes:
   blob-data:
   data-protection:
+  postgres-data:
