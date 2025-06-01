@@ -2,6 +2,7 @@ version: "3"
 services:
   postgres:
     image: postgres:15
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -12,17 +13,9 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
-  webapp:
-    depends_on:
-      - postgres
-    environment:
-      SERVER_URL: http://webapi:4426/api/v1
-    image: portfolio-frontend
-
   webapi:
     image: portfolio-backend
     depends_on:
-      - webapp
       - postgres
     environment:
       ASPNETCORE_URLS: "http://0.0.0.0:4426"
@@ -34,6 +27,13 @@ services:
       - blob-data:/API/
       - data-protection:/root/.aspnet/DataProtection-Keys
       - ~/.aspnet/https:/https:ro
+
+  webapp:
+    depends_on:
+      - webapi
+    environment:
+      SERVER_URL: http://webapi:4426/api/v1
+    image: portfolio-frontend
 
   nginx:
     image: nginx:latest
